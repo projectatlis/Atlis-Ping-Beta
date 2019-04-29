@@ -39,17 +39,17 @@ public class main extends JavaPlugin implements Listener{
       this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
       public void run() {
     	try {
-    		System.setProperty("http.agent", "");
-    		final URLConnection time = new URL("http://worldtimeapi.org/api/timezone/Australia/Brisbane").openConnection();
+    	    System.setProperty("http.agent", "");
+    	    final URLConnection time = new URL("http://worldtimeapi.org/api/timezone/Australia/Brisbane").openConnection();
             final String timejsonearly = IOUtils.toString(time.getInputStream());
             final JSONObject timejson = new JSONObject(timejsonearly);
             final Long unixtime = timejson.getLong("unixtime");
             //System.out.println(Long.toString(unixtime));
-	  		try {
-	        	System.setProperty("http.agent", "");
-	        	int players = Bukkit.getServer().getOnlinePlayers().length;
-	        	//long unixTime = System.currentTimeMillis() / 1000L;
-	        	long worldTime = Bukkit.getServer().getWorld("world").getTime();
+	  	try {
+	             System.setProperty("http.agent", "");
+	             int players = Bukkit.getServer().getOnlinePlayers().length;
+	            //long unixTime = System.currentTimeMillis() / 1000L;
+	            long worldTime = Bukkit.getServer().getWorld("world").getTime();
 	            final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + unixtime).openConnection();
 	            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
 	            connection.setConnectTimeout(1000);
@@ -58,10 +58,10 @@ public class main extends JavaPlugin implements Listener{
 	            System.out.println("[AtlisPing] Ping At Time " + unixtime + " and " + players + " players.");
 	            if (json.get("ping").equals("success")) {
 	            	//Do Nothing, it was all gggg fam
-	            } else {
+	           } else {
 	            	//this.logger.info("[AtlisPing] Ping Server Down");
 	            }
-			} catch (Exception var8) {
+		} catch (Exception var8) {
 				//this.logger.info("[AtlisGuard] Plugin misconfigured, or API down. Letting player join");
 	        }
     	} catch (Exception var8) {
@@ -77,13 +77,13 @@ public class main extends JavaPlugin implements Listener{
       this.logger.warning("[AtlisPing] Successfully stopped!");
       //Send Shutdown Ping
       try {
-	  System.setProperty("http.agent", "");
-	  int players = this.getServer().getOnlinePlayers().length;
-  	  long worldTime = Bukkit.getServer().getWorld("world").getTime();
-      final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + "0000").openConnection();
-      connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-      connection.setConnectTimeout(1000);
-      final String jsonearly = IOUtils.toString(connection.getInputStream());
+	      System.setProperty("http.agent", "");
+	      int players = this.getServer().getOnlinePlayers().length;
+	      long worldTime = Bukkit.getServer().getWorld("world").getTime();
+	      final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + "0000").openConnection();
+	      connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
+	      connection.setConnectTimeout(1000);
+	      final String jsonearly = IOUtils.toString(connection.getInputStream());
       } catch (Exception var8) {
     	  
       }
