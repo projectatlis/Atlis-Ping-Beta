@@ -1,6 +1,6 @@
-name: RetroVPN
+name: AtlisVPN
 author: Johny
-description: Kick users using a VPN
+description: Sends ping with playercount
 main: projectatlis.com.main
 version: 1.1
 website: https://www.johnymuffin.com/
