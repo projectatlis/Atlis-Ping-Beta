@@ -19,58 +19,57 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.ChatColor;
 
-public class main extends JavaPlugin implements Listener{
-	
-
-   Logger logger;
-   String host = "https://node.johnymuffin.com";
-   String servername = "SERVERNAME";
-   String key = "SERVERKEY";
-   String world = "world";
-   
+public class main extends JavaPlugin implements Listener {
 
 
-   public void onEnable() {
-      this.logger = this.getServer().getLogger();
-      this.logger.info("[AtlisPing] Enabling 1.4 - WorldEat");
-      
-      
-      this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
-      public void run() {
-	  	try {
-	             System.setProperty("http.agent", "");
-	             int players = Bukkit.getServer().getOnlinePlayers().length;
-	            //long unixTime = System.currentTimeMillis() / 1000L;
-	            long worldTime = Bukkit.getServer().getWorld(world).getTime();
-	            final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + (System.currentTimeMillis() / 1000L)).openConnection();
-	            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-	            connection.setConnectTimeout(1000);
-	            final String jsonearly = IOUtils.toString(connection.getInputStream());
-	            System.out.println("[AtlisPing] Ping At Time " + (System.currentTimeMillis() / 1000L) + " and " + players + " players.");
-		} catch (Exception var8) {
-	        }
+ Logger logger;
+ String host = "https://node.johnymuffin.com";
+ String servername = "SERVERNAME";
+ String key = "SERVERKEY";
+ String world = "world";
 
-      }
-      }, 0L, 1200);     
-      
+
+
+ public void onEnable() {
+  this.logger = this.getServer().getLogger();
+  this.logger.info("[AtlisPing] Enabling 1.4 - WorldEat");
+
+
+  this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
+   public void run() {
+    try {
+     System.setProperty("http.agent", "");
+     int players = Bukkit.getServer().getOnlinePlayers().length;
+     //long unixTime = System.currentTimeMillis() / 1000L;
+     long worldTime = Bukkit.getServer().getWorld(world).getTime();
+     final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + (System.currentTimeMillis() / 1000 L)).openConnection();
+     connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
+     connection.setConnectTimeout(1000);
+     final String jsonearly = IOUtils.toString(connection.getInputStream());
+     System.out.println("[AtlisPing] Ping At Time " + (System.currentTimeMillis() / 1000 L) + " and " + players + " players.");
+    } catch (Exception var8) {}
 
    }
+  }, 0 L, 1200);
 
-   public void onDisable() {
-      this.logger.warning("[AtlisPing] Successfully stopped!");
-      //Send Shutdown Ping
-      try {
-	      System.setProperty("http.agent", "");
-	      int players = this.getServer().getOnlinePlayers().length;
-	      long worldTime = Bukkit.getServer().getWorld(world).getTime();
-	      final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + (System.currentTimeMillis() / 1000L)).openConnection();
-	      connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-	      connection.setConnectTimeout(1000);
-	      final String jsonearly = IOUtils.toString(connection.getInputStream());
-      } catch (Exception var8) {
-    	  
-      }
-   }
+
+ }
+
+ public void onDisable() {
+  this.logger.warning("[AtlisPing] Successfully stopped!");
+  //Send Shutdown Ping
+  try {
+   System.setProperty("http.agent", "");
+   int players = this.getServer().getOnlinePlayers().length;
+   long worldTime = Bukkit.getServer().getWorld(world).getTime();
+   final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + (System.currentTimeMillis() / 1000 L)).openConnection();
+   connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
+   connection.setConnectTimeout(1000);
+   final String jsonearly = IOUtils.toString(connection.getInputStream());
+  } catch (Exception var8) {
+
+  }
+ }
 
 
 
