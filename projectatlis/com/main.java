@@ -57,18 +57,6 @@ public class main extends JavaPlugin implements Listener {
 
  public void onDisable() {
   this.logger.warning("[AtlisPing] Successfully stopped!");
-  //Send Shutdown Ping
-  try {
-   System.setProperty("http.agent", "");
-   int players = this.getServer().getOnlinePlayers().length;
-   long worldTime = Bukkit.getServer().getWorld(world).getTime();
-   final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + (System.currentTimeMillis() / 1000 L)).openConnection();
-   connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-   connection.setConnectTimeout(1000);
-   final String jsonearly = IOUtils.toString(connection.getInputStream());
-  } catch (Exception var8) {
-
-  }
  }
 
 
