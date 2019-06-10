@@ -50,7 +50,7 @@ public class main extends JavaPlugin implements Listener {
     } catch (Exception var8) {}
 
    }
-  }, 0 L, 1200);
+  }, 0L, 1200);
 
 
  }
