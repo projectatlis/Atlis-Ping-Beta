@@ -1,4 +1,4 @@
-package projectatlis.com;
+Fpackage projectatlis.com;
 
 import java.io.File;
 import java.net.URL;
@@ -21,18 +21,18 @@ import org.bukkit.ChatColor;
 
 public class main extends JavaPlugin implements Listener {
 
+	Logger logger;
+	String world = "world";
+	
+	//User Settings
+	String host = "https://node.johnymuffin.com";
+	String servername = "";
+	String key = "";
 
- Logger logger;
- String host = "https://node.johnymuffin.com";
- String servername = "SERVERNAME";
- String key = "SERVERKEY";
- String world = "world";
-
-
-
- public void onEnable() {
-  this.logger = this.getServer().getLogger();
-  this.logger.info("[AtlisPing] Enabling 1.4 - WorldEat");
+	public void onEnable() {
+    this.logger = this.getServer().getLogger();
+    this.logger.info("[AtlisPing] Enabling 1.4 - Public");
+    world = Bukkit.getServer().getWorlds().get(0).getName();
 
 
   this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
@@ -40,7 +40,6 @@ public class main extends JavaPlugin implements Listener {
     try {
      System.setProperty("http.agent", "");
      int players = Bukkit.getServer().getOnlinePlayers().length;
-     //long unixTime = System.currentTimeMillis() / 1000L;
      long worldTime = Bukkit.getServer().getWorld(world).getTime();
      final URLConnection connection = new URL(host + "/" + "listner" + "/" + servername + "/" + key + "/" + players + "/" + worldTime + "/" + (System.currentTimeMillis() / 1000 L)).openConnection();
      connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
@@ -55,11 +54,8 @@ public class main extends JavaPlugin implements Listener {
 
  }
 
- public void onDisable() {
-  this.logger.warning("[AtlisPing] Successfully stopped!");
- }
-
-
-
+	public void onDisable() {
+		this.logger.warning("[AtlisPing] Successfully stopped!");
+	}
 
 }
