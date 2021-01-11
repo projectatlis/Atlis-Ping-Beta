@@ -1,6 +1,6 @@
 name: AtlisPing
 author: Johny
 description: Sends ping with playercount
-main: com.projectatlis.beta.atlisping.AtlisPing
-version: 2.0.0
+main: com.johnymuffin.tracker.atlisping.AtlisPing
+version: 2.0.1
 website: https://www.johnymuffin.com/
